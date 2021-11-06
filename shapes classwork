@@ -1,0 +1,75 @@
+import math
+from math import pi
+from abc import abstractmethod, ABC
+
+
+
+class shapes(ABC):
+    def __init__(self, radius = float):
+        """
+
+        :param radius: Radius of the circle
+        """
+        self.radius = radius
+    @abstractmethod
+
+    def calculate_square(self):
+        """
+        calculate the square
+        :return: float
+        """
+        pass
+
+    def calculate_perimeter(self):
+        """
+        calculate the perimeter
+        :return: float
+        """
+        pass
+
+class Circle(shapes):
+    number_of_sides = 0
+    def calculate_square(self):
+        return pi*self.radius*self.radius
+
+    def calculate_perimeter(self):
+        return 2*pi*self.radius
+
+
+class Quadrilateral(shapes, ABC):
+    def __init__(self, side_lenght: float, high_lenght: float):
+        """
+
+        :param side_lenght: The side lenght
+        :param high_lenght: The high lenght
+        """
+        self.side_lenght = side_lenght
+        self.high_lenght = high_lenght
+
+
+class Rectangle(Quadrilateral):
+    def calculate_square(self):
+        return self.high_lenght * self.side_lenght
+    def calculate_perimeter(self):
+        return (self.side_lenght+self.high_lenght)*2
+
+
+class Parallelogram(Rectangle):
+    angle_value = 30
+    def calculate_square(self):
+        return self.side_lenght * self.high_lenght
+
+    def calculate_perimeter(self):
+        return (self.side_lenght+2*self.high_lenght)*2
+
+shape_list = []
+circle = Circle(30)
+shape_list.append(circle)
+rectangle = Rectangle(20,10)
+shape_list.append(rectangle)
+parallelogram = Parallelogram(20,15)
+shape_list.append(parallelogram)
+
+for s in shape_list:
+    print(s.calculate_square())
+    print(s.calculate_perimeter())
