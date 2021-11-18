@@ -48,8 +48,30 @@ class Works:
         self.year = year
 
 
-#class Publisher(Works):
- #   def
+
+    def add_book(adding_book):
+        self.adding_book = input()
+        return works.append(self.adding_book)
+    def add_author(adding_author):
+        self.adding_author = input()
+        return author.append(self.adding_author)
+
+
+    class Book(Works):
+        def __init__(self, book_binding = str, book_cover = str, year = int):
+            super().__init__(year)
+            self.book_binding = book_binding
+            self.book_cover = book_cover
+
+    class Magazine(Works):
+        def __init__(self, type_of_cover = str, year = int):
+            super().__init__(year)
+            self.type_of_cover = type_of_cover
+
+    class Publishing(Works):
+        def __init__(self, place_of_publication, year: int):
+            super().__init__(year)
+            self.place = place_of_publication
 
 
 authors_list = []
@@ -64,6 +86,3 @@ for a in authors_list:
 
 for b in work_list:
     print(b.adding_work())
-
-
-
