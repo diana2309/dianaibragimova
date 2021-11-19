@@ -1,7 +1,7 @@
-def Prime(n):
+def Prime(limit):
     a = 1
     ch = False
-    while a != n:
+    while a != limit:
         for x in range(2, a+1):
             if a % x == 0:
                 ch = False
