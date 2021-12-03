@@ -1,0 +1,9 @@
+n = int(input())
+n = list(str(n))
+n.append('1')
+m = []
+m.append("1")
+for i in range(len(n)):
+    m.append(n[i])
+m = int(''.join(map(str, m)))
+print(m)
