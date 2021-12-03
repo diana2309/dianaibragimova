@@ -4,6 +4,6 @@ m = []
 #print(n)
 for i in range(len(n)):
     if int(n[i])%2 != 0:
-        m.append((str(n[i])))
+        m.append((n[i]))
 m = int(''.join(map(str, m)))
 print(m)
