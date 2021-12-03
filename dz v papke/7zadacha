@@ -1,0 +1,7 @@
+n = int(input())
+maxx = 0
+n = str(n)
+for i in range(len(n)):
+    if int(n[i])>maxx:
+        maxx = int(n[i])
+print(maxx)
