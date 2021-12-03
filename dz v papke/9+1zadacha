@@ -1,0 +1,25 @@
+n = int(input())
+count = 0
+ver = False
+if n>= 2:
+    for i in range(n):
+        countlen = 0
+        d = int(input())
+        m = list(str(d))
+
+        if int(m[0]) % 2 == 0:
+            for i in range(len(m)):
+                if int(m[i]) % 2 == 0:
+                    countlen +=1
+
+        if int(m[0]) % 2 != 0:
+            for i in range(len(m)):
+                if int(m[i]) % 2 != 0:
+                    countlen +=1
+
+        if len(m) == 3 and len(m) == countlen or len(m)  == 5 and len(m) == countlen:
+            count = count + 1
+
+    if count == 2:
+        ver = True
+print(ver)
