@@ -1,0 +1,10 @@
+n = int(input())
+m = list(str(n))
+a = len(m)
+for i in range(a):
+    b = n//10**(a-1) + n//(10**(a-2))%10
+    del m[0]
+    n = n%(10**(a-1))
+    #n = [int(''.join(map(str, n)))]
+    b = (n // 10 ** (a - 1) - n) // (10 ** (a - 2)) % 10
+print(b)
