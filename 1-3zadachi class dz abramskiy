@@ -1,0 +1,196 @@
+#1 zadacha
+
+class Vector2D:
+    def __init__(self, x = 0, y = 0):
+        self.x = x
+        self.y = y
+    def add(self, k):
+        z1 = self.x + k.x
+        z2 = self.y + k.y
+        return Vector2D(z1, z2)
+    def add2(self,k):
+        self.x += k.x
+        self.y += k.y
+    def sub(self,k):
+        t1 = self.x - k.x
+        t2 = self.y - k.y
+        return Vector2D(t1, t2)
+    def sub2(self,k):
+        self.x -= k.x
+        self.y -= k.y
+    def mult(self, a):
+        p1 = self.x * a
+        p2 = self.y * a
+        return Vector2D(p1, p2)
+    def mult2(self, a, k):
+        self.x = k.x * a
+        self.y = k.y * a
+    def __str__(self):
+        return f"строковое представление:{self.x, self.y}"
+    def len(self):
+        return (self.x**2 + self.y**2)**0.5
+    def scalarProduct(self,k):
+        s = ((self.x**2 + k.x**2)** 0.5 + (self.y**2 + k.y**2)** 0.5)*math.cos(self.x, self.y)
+        return s
+    def cos(self,k):
+        c = (self.x * new.x + self.y * new.y) / ((self.x**2 + self.y**2)**0.5 * (new.x**2 + new.y**2)**0.5)
+        return c
+    def equals(self, k):
+        l1 = (self.x**2 + self.y**2)**0.5
+        l2 = (k.x**2 + k.y**2)**0.5
+        if l1 == l2:
+            return True
+        else:
+            return False
+
+# z = Vector2D(1,2,3,4)
+# print(z.x1)
+#print(add())
+
+#zadacha № 2
+
+from functools import reduce
+class RationalFraction:
+    def __init__(self, a = 0, b = 0):
+        self.a = a
+        self.b = b
+
+    def reduce(self):
+        n = math.gcd(self.x, self.y)
+        self.x //= n
+        self.y //= n
+
+    def add(self,k):
+        z1 = self.a + k.a
+        z2 = self.b + k.b
+        return RationalFraction(z1, z2)
+
+    def add2(self, k):
+        self.a += k.a
+        self.b += k.b
+        self.reduce()
+
+    def sub(self,k):
+        t1 = self.a - k.a
+        t2 = self.b - k.b
+        return RationalFraction(t1, t2).reduce()
+
+    def sub2(self,k):
+        self.a -= k.a
+        self.b -= k.b
+        self.reduce()
+
+    def mult(self, k):
+        p1 = self.a * k.a
+        p2 = self.b * k.b
+        return RationalFraction(p1, p2).reduce()
+
+    def mult2(self, a, k):
+        self.a *= k.a
+        self.b *= k.b
+        self.reduce()
+
+    def div(self,k):
+        d1 = self.a * k.b
+        d2 = self.b * k.a
+        return RationalFraction(d1, d2).reduce()
+
+    def div2(self, k):
+        self.a /= k.b
+        self.b /= k.a
+        self.reduce()
+
+    def __str__(self):
+        return f"строковое представление:{self.a}, '/',{self.b}"
+
+    def value(self):
+        return self.a / self.b
+
+    def equals(self, k):
+        self.reduce()
+        k.reduce()
+        nk = (self.b * k.b) // math.gcd(self.b * k.b)
+        k1 = self.a * (nk // self.b)
+        k2 = k.x * (nk // k.b)
+        if k1 > k2:
+            return ">"
+        if k1 < k2:
+            return "<"
+        else:
+            return "=="
+
+    def numberPart(self):
+        return self.a // self.b
+
+
+#3 zadacha
+
+class ComplexNumber:
+    def __init__(self, a = 0, b = 0):
+       self.a = a
+       self.b = b
+
+    def add(self, k):
+        self.a += k.a
+        self.b += k.b
+
+    def add2(self, k):
+        self.a += k.a
+        self.b += k.b
+
+    def sub(self,k):
+        self.a -= k.a
+        self.b -= k.b
+
+    def sub2(self,k):
+        self.a -= k.a
+        self.b -= k.b
+
+    def multNumber(self, x):
+        self.a = k.a * x
+        self.b = k.b * x
+
+    def multNumber2(self, x):
+        self.a = k.a * x
+        self.b = k.b * x
+
+    def mult(self, k):
+        self.a = ((self.a * k.a) + (self.b * k.b)*(-1))
+        self.b = ((self.a * k.b) + (self.b * k.a))
+
+    def mult2(self, k):
+        self.a = ((self.a * k.a) + (self.b * k.b)*(-1))
+        self.b = ((self.a * k.b) + (self.b * k.a))
+
+    def div(self, k):
+        d1 = (((self.a +self.b)*((k.a**2 - k.b**2)/(k.a + k.b)))/k.a**2 + k.b**2)
+        return ComplexNumber(d1)
+
+    def div2(self, k):
+        d2 = (((self.a +self.b)*((k.a**2 - k.b**2)/(k.a + k.b)))/k.a**2 + k.b**2)
+        return ComplexNumber(d2)
+
+    def len(self):
+        return (self.a ** 2 + self.b ** 2) ** 0.5
+
+    def __str__(self):
+        if self.a>0 and self.b>0 or self.a<0 and self.b>0:
+            return f"строковое представление:{self.a},+,{self.b}"
+        if self.a >0 and self.b<0 or self.a <0 and self.b<0:
+            return f"строковое представление:{self.a},-,{abs(self.b)}"
+
+    def arg(self):
+        return math.degrees(math.atan(self.a / self.b))
+
+    def pow(self, n):
+        z = self.len()**n
+        self.a = z*(math.degrees(math.sin(self.a / (self.a ** 2 + self.b ** 2) ** 0.5)))
+        self.b = z*(math.degrees(math.cos(self.b / (self.a ** 2 + self.b ** 2) ** 0.5)))
+
+    def equals(self,k):
+        l1 = (self.a ** 2 + self.b ** 2) ** 0.5
+        l2 = (k.a ** 2 + k.b ** 2) ** 0.5
+        if l1 == l2:
+            return True
+        else:
+            return False
