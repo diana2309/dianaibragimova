@@ -1,0 +1,10 @@
+n = int(input())
+degree = 0
+a = 0
+summ = 0
+
+while degree < n:
+    a = a + 10**degree
+    summ += a
+    degree += 1
+print(summ)
