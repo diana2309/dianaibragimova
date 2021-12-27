@@ -1,0 +1,63 @@
+class Abiturient:
+    def __init__(self, name, surname, score, dream_facultet =''):
+        self.score = score
+        self.name = name
+        self.surname = surname
+        self.dream_facultet = dream_facultet
+        students.append(self)
+        students.sort(reverse=True, key=lambda self: self.score)
+
+
+
+class Facultete:
+    def __init__(self, name, university, payment_places, free_payment_places):
+        self.name = name
+        self.university = university
+        self.payment_places = payment_places
+        self.free_payment_places = free_payment_places
+        faculties.append(self)
+        self.final = []
+    def application_accepted(self):
+        if self.free_payment_places != 0:
+            for i in students:
+                if i.dream_facultet == self.name:
+                    self.free_payment_places -= 1
+                    self.final.append(i)
+                    #del self.final[i]
+                    break
+        elif self.payment_places != 0:
+            for i in students:
+                if i.dream_facultet == self.name:
+                    self.payment_places -= 1
+                    self.final.append(i)
+                    #del self.final[0]
+                    break
+        else:
+            print('Мест нет')
+    def postupivshie(self):
+        print('Поступившие в институт:')
+        for abit in self.final:
+            print(abit.name, abit.surname, abit.score, 'Поздравляем!')
+            del self.final[0]
+    def ne_postupivshie(self):
+        print('Вам следует выбрать другой факультет:')
+        for abit in self.final:
+            print(abit.name, abit.surname, abit.score)
+            del self.final[0]
+
+
+
+
+
+students = []
+faculties = []
+itis = Facultete('ИТИС', 'КФУ', 2, 1)
+
+
+Abiturient('Анжелика', 'Проворова', 263, 'ИТИС')
+Abiturient('Фарида', 'Гаетова', 270, 'ИТИС')
+Abiturient('Гузель', 'Исмагилова', 260, 'ИТИС')
+itis.application_accepted()
+itis.application_accepted()
+itis.postupivshie()
+itis.ne_postupivshie()
