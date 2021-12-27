@@ -1,0 +1,46 @@
+import time
+
+class Tamagochi:
+    flag = False
+    death = 10
+
+    def __init__(self, name):
+        self.name = name
+        self.satiety = 100
+        self.health = 100
+        self.time = time.time()
+
+    def feeding(self):
+        if not Tamagochi.flag:
+            self.satiety = 100
+            print(f"{self.name} сытый")
+        else:
+            print(f'{self.name} умер')
+
+    def check(self):
+        m = (int(time.time()) - int(self.time)) * Tamagochi.death
+        self.time = time.time()
+        if not Tamagochi.flag:
+            self.satiety -= m
+            if self.satiety < 0:
+                self.health += self.satiety
+                self.satiety = 0
+                if self.health <= 0:
+                    Tamagochi.flag = True
+                    print(f' {self.name} умер')
+                else:
+                    print(f'{self.name} умирает от голода, его здоровье: {self.health}/100')
+            else:
+                print(f'{self.name} голоден, его сытость: {self.satiety}/100')
+
+
+pet = Tamagochi('тамагочи')
+time.sleep(2)
+pet.check()
+time.sleep(4)
+pet.check()
+pet.feeding()
+time.sleep(8)
+pet.check()
+time.sleep(6)
+pet.check()
